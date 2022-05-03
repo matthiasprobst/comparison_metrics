@@ -7,7 +7,7 @@ import pint_xarray
 import xarray
 import xarray as xr
 
-from veccomp.core import Metric
+from .metrics import Metric
 from . import metrics
 from .core import Comparison
 
@@ -17,7 +17,7 @@ except ImportError:
     from importlib_metadata import version
 
 pint_xarray.__version__
-__version__ = version("veccomp")
+__version__ = version("comparison_metrics")
 
 logger = logging.getLogger(__package__)
 
@@ -32,7 +32,8 @@ class CmpArrayAccessor:
         self._cmp_method = None
         self.interpolation_direction = None
 
-    def compute_metric(self, other, metric, *args, **kwargs):
+    def compute_metric(self, other: xarray.Dataset,
+                       metric: str or Metric, *args, **kwargs):
         if isinstance(metric, str):
             if metric in metrics.metric_dict:
                 m = metrics.metric_dict[metric]()
