@@ -159,7 +159,9 @@ class RI(Metric):
     best = 1.
     worst = -1.
     unit = Unit.DIMENSIONLESS
-    bibtex = ['liu2011development', 'willman2020quantitative', 'kuo2014large', 'van2018large']
+    bibtex = ['liu2011development', 'willman2020quantitative', 'kuo2014large', 'van2018large',
+              'shen2021temporal']
+    description = 'Similar to LSI and ASI. Computes the cosine between vectors.'
 
     def compute(self, observation: np.ndarray, prediction: np.ndarray) -> np.ndarray:
         observation_abs = np.linalg.norm(observation, axis=-1)
@@ -183,11 +185,27 @@ class ASI(Metric):
     worst = -1.
     units = Unit.DIMENSIONLESS
     bibtex = ['raschi2012cfd', 'tang2013numerical']
+    description: str = 'Similar to LSI and RI. Computes the cosine between vectors.'
 
     def compute(self, observation: np.ndarray, prediction: np.ndarray) -> np.ndarray:
         ri = RI()
         return ri.compute(observation, prediction)
 
+class LSI(Metric):
+    """Local Structure Index (LSI) (equal to RI, ASI, thus cosine of vector fields)"""
+    name = 'LSI'
+    long_name = 'local structure index'
+    lim = [-1, 1]
+    best = 1.
+    worst = -1
+    units = Unit.DIMENSIONLESS
+    bibtext = ['zhao2019multi', ]
+    description: str = 'Similar to RI and ASI. Computes the cosine between vectors.'
+
+    def compute(self, observation, prediction):
+        ri = RI()
+        self.result = ri.compute(observation, prediction)  # ASI=RI
+        return self.result
 
 class MAE(Metric):
     """Mean Absolute Error.
