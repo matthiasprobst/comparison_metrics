@@ -15,7 +15,7 @@ setuptools.setup(
     description="Collection of comparison metrics mainly intended for vector field comparisons.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://git.scc.kit.edu/da4323/VecComp",
+    url="https://github.com/MatthiasProbst/comparison_metrics",
     packages=setuptools.find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
