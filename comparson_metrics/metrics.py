@@ -151,6 +151,21 @@ class AE(Metric):
         return observation - prediction
 
 
+def ARE(Metric):
+    """Absolute relative Error. The observation is taken as reference"""
+    name = 'ARE'
+    long_name = 'Absolute relative Error'
+    lim = [0., p.nan]
+    best = 0.
+    worst = np.nan
+    unit = Unit.REAL
+    description: str = 'The relative error.'  # optional description about the method
+    bibtex = []
+
+    def compute(self, observation: np.ndarray, prediction: np.ndarray, **kwargs):
+        return np.abs(prediction - observation) / observation
+
+
 class RI(Metric):
     """Relevance Index (cosine of angle between vectors)"""
     name = 'RI'
