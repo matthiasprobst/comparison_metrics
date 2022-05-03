@@ -140,9 +140,9 @@ class AE(Metric):
     """The absolute error, simple difference between observation and prediction"""
     name = 'AE'
     long_name = 'Absolute Error'
-    lim = [0., (-np.nan, np.nan)]
+    lim = [0., (-np.inf, np.inf)]
     best = 0.
-    worst = np.nan
+    worst = np.inf
     unit = Unit.REAL
     description: str = 'The absolute error between.'  # optional description about the method
     bibtex = []
@@ -191,6 +191,7 @@ class ASI(Metric):
         ri = RI()
         return ri.compute(observation, prediction)
 
+
 class LSI(Metric):
     """Local Structure Index (LSI) (equal to RI, ASI, thus cosine of vector fields)"""
     name = 'LSI'
@@ -206,6 +207,7 @@ class LSI(Metric):
         ri = RI()
         self.result = ri.compute(observation, prediction)  # ASI=RI
         return self.result
+
 
 class MAE(Metric):
     """Mean Absolute Error.
