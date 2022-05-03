@@ -151,10 +151,10 @@ class AE(Metric):
         return observation - prediction
 
 
-def ARE(Metric):
-    """Absolute relative Error. The observation is taken as reference"""
-    name = 'ARE'
-    long_name = 'Absolute relative Error'
+def RE(Metric):
+    """Relative Error. The observation is taken as reference"""
+    name = 'RE'
+    long_name = 'Relative Error'
     lim = [0., p.nan]
     best = 0.
     worst = np.nan
@@ -163,7 +163,22 @@ def ARE(Metric):
     bibtex = []
 
     def compute(self, observation: np.ndarray, prediction: np.ndarray, **kwargs):
-        return np.abs(prediction - observation) / observation
+        return (prediction - observation) / observation
+
+
+def ARE(Metric):
+    """Absolute relative Error. The observation is taken as reference"""
+    name = 'ARE'
+    long_name = 'Absolute relative Error'
+    lim = [0., p.nan]
+    best = 0.
+    worst = np.nan
+    unit = Unit.REAL
+    description: str = 'The absolute value of the relative error.'  # optional description about the method
+    bibtex = []
+
+    def compute(self, observation: np.ndarray, prediction: np.ndarray, **kwargs):
+        return np.abs((prediction - observation) / observation)
 
 
 class RI(Metric):
