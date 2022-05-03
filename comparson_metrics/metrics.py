@@ -174,6 +174,21 @@ class RI(Metric):
         return p / normalization
 
 
+class ASI(Metric):
+    """Angular Similarity Index (equal to RI, cosine of angle between vectors)"""
+    name = 'ASI'
+    long_name = 'angular similarity index'
+    lim = [-1, 1]
+    best = 1.
+    worst = -1.
+    units = Unit.DIMENSIONLESS
+    bibtex = ['raschi2012cfd', 'tang2013numerical']
+
+    def compute(self, observation: np.ndarray, prediction: np.ndarray) -> np.ndarray:
+        ri = RI()
+        return ri.compute(observation, prediction)
+
+
 class MAE(Metric):
     """Mean Absolute Error.
     Note that in wustenhagen2021cfd, the normalization is a reference velocity"""
@@ -184,7 +199,7 @@ class MAE(Metric):
     worst = (-np.inf, np.inf)
     units = Unit.REAL
     description = 'measure for prediction mean bias'
-    bibtext = ['zhao2019multi', 'wustenhagen2021cfd']
+    bibtex = ['zhao2019multi', 'wustenhagen2021cfd']
 
     def compute(self, observation: np.ndarray, prediction: np.ndarray) -> float:
         tmp = np.abs(observation - prediction)
