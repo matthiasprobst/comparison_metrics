@@ -1,8 +1,8 @@
 import setuptools
 
-from comparson_metrics._version import __version__
 
 name = 'comparison_metrics'
+__version__ = '0.1.0'
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -27,12 +27,9 @@ setuptools.setup(
         'appdirs',
         'numpy>=1.19',
         'bibtexparser',
-        'appdirs',
-        'xarray',
-        'pathlib',
         'bibtexparser',
-        'xarray'
-        'pint_xarray',
+        'xarray',
+        'pint-xarray',
         'pytest'
     ],
 )
