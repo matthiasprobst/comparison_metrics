@@ -30,6 +30,9 @@ setuptools.setup(
         'appdirs',
         'xarray',
         'pathlib',
-        'bibtexparser'
+        'bibtexparser',
+        'xarray'
+        'pint_xarray',
+        'pytest'
     ],
 )
