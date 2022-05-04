@@ -1,6 +1,6 @@
 import unittest
 
-from comparson_metrics import metrics
+from comparison_metrics import metrics
 
 
 class TestMetrics(unittest.TestCase):
