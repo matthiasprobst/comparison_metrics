@@ -263,6 +263,21 @@ class MAE(Metric):
         self.result = result
         return self.result
 
+class MTARE(Metric):
+    """Mean hyperbolic tangent of the absolute relative error normalized
+    to [0, 1] with 1 being best agreement"""
+    name = 'MTARE'
+    long_name = 'mean hyperbolic tangent of the absolute relative error'
+    lim = [0, 1]
+    best = 1  #
+    worst = 0
+    units = Unit.DIMENSIONLESS
+    description = ''
+    bibtex = ['oberkampf2002verification'] # TODO
+    def compute(self, observation, prediction):
+        return 1-np.nanmean(np.tanh(np.abs((prediction - observation) / observation)))
+# alias:
+mean_hyperbolic_tangent_of_absolute_relative_error = MTARE().compute
 
 # register all metrics here:
-metric_dict = {m.name: m for m in (AE, RI, MAE)}
+metric_dict = {m.name: m for m in (AE, RI, MAE, MTARE)}
