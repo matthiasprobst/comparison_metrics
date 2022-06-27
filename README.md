@@ -1,5 +1,7 @@
 # Comparison metrics
 
+**Note**: Under development, very beta! Firs release is planned for 07.2022 
+
 This is a small library providing comparison metrics. Main motivation is to
 use such metrics for vector field comparisons in fluid dynamic problems such as
 comparing computational fluid dynamic simulations (CFD) with particle image velocimetry (PIV)
